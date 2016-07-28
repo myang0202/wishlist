@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+
+	<body>
+		<h1>Welcome!</h1>
+		<form action="{% url 'login' %}" method="POST">
+      <fieldset>
+        <legend>
+    			{% csrf_token %}
+    			<p>Username: <input type="text" name="username"></p>
+    			<p>Password: <input type="password" name="password"></p>
+    			<p><input type="submit" value="Log in"></p>
+        </legend>
+      </fieldset>
+		</form>
+    {% for error in logerrors%}
+      {{error}}<br>
+    {%endfor%}
+		<form action="{% url 'register' %}" method="POST">
+      <fieldset>
+        <legend>
+    			{% csrf_token %}
+    			<p>Name: <input type="text" name="name"></p>
+          <p>Username: <input type="text" name="username"></p>
+    			<p>Password: <input type="password" name="password"></p>
+    			<p>Confirm password: <input type="password" name="confirm_password"></p>
+          <p>Date of Birth <input type="date" name="date" value=""></p>
+    			<p><input type="submit" value="Register"></p>
+        </legend>
+      </fieldset>
+		</form>
+	</body>
+</html>

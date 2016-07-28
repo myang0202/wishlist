@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p><a href="{% url 'dashboard' %}">Home</a> <a href="{% url 'logout' %}">Logout</a></p>
+    <h3>{{wish.item}}</h3>
+    <h4>Users who added this product/item under their wish list:</h4>
+    <h5>creator:{{creator.creator.name}} </h5>
+    {% for otheruser in otherusers %}
+      <td><t5>{{otheruser.name}}<br></t5></td>
+    {% endfor %}
+  </body>
+</html>

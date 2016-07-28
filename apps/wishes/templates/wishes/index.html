@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      th{
+        border-style:groove;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="{% url 'dashboard' %}">Home</a> <a href="{% url 'logout' %}">Logout</a></p>
+    <h2>Hello, {{user}}</h2>
+    <h4>Your Wish List</h4>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Added by</th>
+        <th>Date Added</th>
+        <th>Action</th>
+      </tr>
+    {% for mywish in mywishes %}
+      <tr>
+        <td><a href="{% url 'show_wish' mywish.id %}">{{mywish.item}}</a></td>
+        <td>{{mywish.creator.name}}</td>
+        <td>{{mywish.created_at}}</td>
+        <td><a href="{% url 'remove' mywish.id %}">Remove from my list</a></td>
+      </tr>
+    {% endfor %}
+    {% for mywishcreator in mywishcreators %}
+      <tr>
+        <td><a href="{% url 'show_wish' mywishcreator.id %}">{{mywishcreator.item}}</a></td>
+        <td>{{mywishcreator.creator.name}}</td>
+        <td>{{mywishcreator.created_at}}</td>
+        <td><a href="{% url 'delete' mywishcreator.id %}">delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+     <h4>Other Users' Wish List</h4>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Added by</th>
+      <th>Date Added</th>
+      <th>Action</th>
+    </tr>
+        {% for allwish in allwishes %}
+      <tr>
+        <td><a href="{% url 'show_wish' allwish.id %}">{{allwish.item}}</a></td>
+        <td>{{allwish.creator.name}}</td>
+        <td>{{allwish.created_at}}</td>
+        <td><a href="{%url 'addtolist' allwish.id  %}">add to my wishlist</a></td>
+      </tr>
+    {% endfor %}
+    </table>
+    <a href="{%url 'additem' %}">Add Item</a>
+  </body>
+</html>
